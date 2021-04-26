@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\konra\\source\\repos\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj": {}
+    "C:\\Users\\konra\\Source\\Repos\\BattleShipTask\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj": {}
   },
   "projects": {
-    "C:\\Users\\konra\\source\\repos\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj": {
+    "C:\\Users\\konra\\Source\\Repos\\BattleShipTask\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konra\\source\\repos\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj",
+        "projectUniqueName": "C:\\Users\\konra\\Source\\Repos\\BattleShipTask\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj",
         "projectName": "BattleShipTask",
-        "projectPath": "C:\\Users\\konra\\source\\repos\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj",
+        "projectPath": "C:\\Users\\konra\\Source\\Repos\\BattleShipTask\\BattleShipTask\\BattleShipTask\\BattleShipTask.csproj",
         "packagesPath": "C:\\Users\\konra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konra\\source\\repos\\BattleShipTask\\BattleShipTask\\obj\\",
+        "outputPath": "C:\\Users\\konra\\Source\\Repos\\BattleShipTask\\BattleShipTask\\BattleShipTask\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
