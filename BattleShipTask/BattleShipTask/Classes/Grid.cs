@@ -8,8 +8,12 @@ namespace BattleShip.Classes
     public class Grid
     {
         Random random = new Random();
+        
+        //List of every square in the grid
         public List<Square> grid { get; set; }
+        //List of squares that ships occupy
         public List<Square> shipsSquares { get; set; }
+        //List of squares that was already hit
         public List<Square> hitSquares { get; set; }
 
         public Square lastHit, firstHit;
@@ -36,6 +40,7 @@ namespace BattleShip.Classes
             gameOver = false;
         }
 
+        //Places ships of size = size on the random spot on the grid
         public void ShipPlacement(int size)
         {
             int x = random.Next(1, 11);
@@ -59,8 +64,7 @@ namespace BattleShip.Classes
                         }
                     }
                 }
-
-
+                //if "no" add squares to shipsSquares List and set that square to occupied in gridList
                 for (int i = 0; i < size; i++)
                 {
                     shipsSquares.Add(new Square(x + i, y));
@@ -82,7 +86,7 @@ namespace BattleShip.Classes
                         }
                     }
                 }
-
+                //if "no" add squares to shipsSquares List and set that square to occupied in gridList
                 for (int i = 0; i < size; i++)
                 {
                     shipsSquares.Add(new Square(x, y + i));
@@ -98,6 +102,7 @@ namespace BattleShip.Classes
 
         public void shot()
         {
+            //if direction = 0: pick random square
             if (direction == 5)
                 direction = 0;
 
@@ -106,6 +111,7 @@ namespace BattleShip.Classes
                 x = random.Next(1, 11);
                 y = random.Next(1, 11);
             }
+            //if direction = 1: pick square 1 up from last hit
             //up
             else if (direction == 1)
             {
@@ -120,6 +126,7 @@ namespace BattleShip.Classes
                 y = lastHit.Gety() - 1;
 
             }
+            //if direction = 2: pick square 1 down from last hit
             //down
             else if (direction == 2)
             {
@@ -133,6 +140,7 @@ namespace BattleShip.Classes
                 x = lastHit.Getx();
                 y = lastHit.Gety() + 1;
             }
+            //if direction = 3: pick square 1 right from last hit
             //right
             else if (direction == 3)
             {
@@ -146,6 +154,7 @@ namespace BattleShip.Classes
                 x = lastHit.Getx() + 1;
                 y = lastHit.Gety();
             }
+            //if direction = 4: pick square 1 left from last hit
             //left
             else if (direction == 4)
             {
@@ -165,7 +174,7 @@ namespace BattleShip.Classes
                 //checks if this space was hit already
                 if (x == item.Getx() && y == item.Gety())
                 {
-                    //if yes shoot agine
+                    //if "yes" shoot agine
                     if (direction != 0)
                     {
                         lastHit = firstHit;
@@ -177,10 +186,11 @@ namespace BattleShip.Classes
                 }
             }
 
+            //if "no" add this square to hitSquares List and mark is as hit in grid List
             hitSquares.Add(new Square(x, y));
             SetHitGrid(x, y);
 
-            hitSquare = Contains();
+            hitSquare = Find();
 
             //hit
             if (hitSquare != null)
@@ -217,6 +227,7 @@ namespace BattleShip.Classes
             }
         }
 
+        //if every suqare from shipsSquares id hit: return true
         public bool GameOver()
         {
             foreach (Square item in shipsSquares.ToList())
@@ -233,7 +244,6 @@ namespace BattleShip.Classes
         {
             foreach (Square item in grid.ToList())
             {
-                //checks if this space was hit already
                 if (x == item.Getx() && y == item.Gety())
                 {
                     item.SetOccupied(true);
@@ -245,7 +255,6 @@ namespace BattleShip.Classes
         {
             foreach (Square item in grid.ToList())
             {
-                //checks if this space was hit already
                 if (x == item.Getx() && y == item.Gety())
                 {
                     item.SetHit(true);
@@ -253,11 +262,11 @@ namespace BattleShip.Classes
             }
         }
 
-        public Square Contains()
+        //finds and returns square from shipsSquares List
+        public Square Find()
         {
             foreach (Square item in shipsSquares.ToList())
             {
-                //hit
                 if (x == item.Getx() && y == item.Gety())
                 {
                     return item;
