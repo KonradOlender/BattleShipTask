@@ -27,7 +27,7 @@ Simple simulation of battleship game between two players
   Jeśli na tym polu stał statek zaznacza to pole tatku jako zatopione.
   
 # 3 Działanie algorytmu:
-  Postanowiłem że zaimplemętuję algorytm który nie tylko strzela w losowe pola. Gdy algorytm znajdzie pole na którym znajduje się statek, od razu próbuje go zatopić, podobnie jak zrobiłby to człowiek
+  Postanowiłem że zaimplemętuję algorytm który nie tylko strzela w losowe pola. Gdy algorytm znajdzie pole na którym znajduje się statek, od razu próbuje go zatopić, podobnie     jak zrobiłby to człowiek
   
   Działa to w następujący sposób:
   
@@ -46,4 +46,36 @@ Simple simulation of battleship game between two players
   
   Symulacja kończy się gdy jeden z graczy zatopi wszystkie statki
   
+# 4 Kontroler:
+  * Grid 
   
+  Tworzy nowy obiekt klasy Grid zapisuje go w sesji i zwraca Json tego obiektu
+  
+
+        public IActionResult Grid()
+        {
+            Grid grid = new Grid();
+            grid.Init();
+            HttpContext.Session.SetString("GridSession", JsonConvert.SerializeObject(grid));
+            
+            return Json(grid);
+        }
+  
+  * Shot
+
+  Pobiera zapisany obiekt klasy Grid z sesji, modyfikuję go wywołując metody: Shot() i CheckGameOver()
+  
+  Zapisuje nowy stan w Sesjj i zwraca Json
+
+        public IActionResult NextShot()
+        {
+            Grid grid = JsonConvert.DeserializeObject<Grid>(HttpContext.Session.GetString("GridSession"));
+            if(grid.hitSquares.Count != 100)
+            {
+                grid.shot();
+                grid.CheckGameOver();
+            }
+            HttpContext.Session.SetString("GridSession", JsonConvert.SerializeObject(grid));
+
+            return Json(grid);
+        }
